@@ -158,18 +158,24 @@ export class ShinobigamiActor extends Actor {
 
   async rollTalent(title, num, add, secret) {
     if (!add) {
-      this._onRollDice(title, num, null, secret); 
+      this._onRollDice(title, num, null, null, null, secret); 
       return;
     }
     
     new Dialog({
         title: "Please put the additional value",
-        content: `<p><input type='text' id='add'></p><script>$("#add").focus()</script>`,
+        content: `<label for='add'>${game.i18n.localize("Shinobigami.AddOn")}</label>
+                  <p><input type='number' id='add'></p>
+                  <label for='specialThreshhold'>${game.i18n.localize("Shinobigami.Special")}</label>
+                  <p><input type='number' id='specialThreshhold' min='2' max='12'></p>
+                  <label for='fumbleThreshhold'>${game.i18n.localize("Shinobigami.Fumble")}</label>
+                  <p><input type='number' id='fumbleThreshhold' min='2' max='12'></p>
+                  <script>$("#add").focus()</script>`,
         buttons: {
           confirm: {
             icon: '<i class="fas fa-check"></i>',
             label: "Confirm",
-            callback: () => this._onRollDice(title, num, $("#add").val(), secret)
+            callback: () => this._onRollDice(title, num, $("#add").val(), $("#specialThreshhold").val(), $("#fumbleThreshhold").val(), secret)
           }
         },
         default: "confirm"
@@ -177,7 +183,7 @@ export class ShinobigamiActor extends Actor {
     
   }
 
-  async _onRollDice(title, num, add, secret) {
+  async _onRollDice(title, num, add, specialThreshhold, fumbleThreshhold, secret) {
     
     // GM rolls.
     let chatData = {
@@ -197,21 +203,25 @@ export class ShinobigamiActor extends Actor {
     chatData.blind = chatData.rollMode === "blindroll";
 
     let formula = "2d6";
-    if (add != null)
+    if (add != null && Number.isInteger(parseInt(add)))
       formula += (add < 0) ? `${add}` : `+${add}`
     let roll = new Roll(formula);
     await roll.roll({async: true});
     let d = roll.terms[0].total;
 
     chatData.roll = roll;
+    const hasSpecialThreshhold = Number.isInteger(parseInt(specialThreshhold));
+    const hasFumbleThreshhold = Number.isInteger(parseInt(fumbleThreshhold));
     chatData.content = await renderTemplate("systems/shinobigami/templates/roll.html", {
       formula: roll.formula,
       flavor: null,
       user: game.user.id,
       tooltip: await roll.getTooltip(),
       total: Math.round(roll.total * 100) / 100,
-      special: d == 12,
-      fumble: d == 2,
+      special: d >= (hasSpecialThreshhold ? specialThreshhold : 12),
+      fumble: d <= (hasFumbleThreshhold ? fumbleThreshhold : 2), 
+      specialThreshhold: hasSpecialThreshhold ? `@${specialThreshhold}` : "",
+      fumbleThreshhold: hasFumbleThreshhold ? `#${fumbleThreshhold}` : "",
       num: num
     });
 
