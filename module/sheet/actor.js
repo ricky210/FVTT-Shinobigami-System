@@ -164,11 +164,11 @@ export class ShinobigamiActor extends Actor {
     
     new Dialog({
         title: "Please put the additional value",
-        content: `<label for='add'>${game.i18n.localize("Shinobigami.addOn")}</label>
+        content: `<label for='add'>${game.i18n.localize("Shinobigami.AddOn")}</label>
                   <p><input type='text' id='add'></p>
-                  <label for='supecial'><${game.i18n.localize("Shinobigami.special")}/label>
+                  <label for='special'><${game.i18n.localize("Shinobigami.Special")}/label>
                   <p><input type='number' id='special' min='2' max='12'></p>
-                  <label for='fumble'>${game.i18n.localize("Shinobigami.fumble")}</label>
+                  <label for='fumble'>${game.i18n.localize("Shinobigami.Fumble")}</label>
                   <p><input type='number' id='fumble' min='2' max='12'></p>
                   <script>$("#add").focus()</script>`,
         buttons: {
