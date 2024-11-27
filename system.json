@@ -1,6 +1,6 @@
 {
-  "id": "shinobigami",
-  "title": "Shinobigami System",
+  "id": "shinobigami_ricky210",
+  "title": "Shinobigami System(ricky210 Fork Edition)",
   "description": "Shinobigami system",
   "version": "1.3.8",
   "compatibility": {
@@ -28,7 +28,7 @@
       "label": "Chat Macro",
       "name": "chat-macro",
       "path": "packs/chat-macro.db",
-      "system": "shinobigami",
+      "system": "shinobigami_ricky210",
       "type": "Macro",
       "private": false,
       "flags": {}
@@ -38,7 +38,7 @@
       "type": "Macro",
       "name": "create-macro",
       "path": "packs/create-macro.db",
-      "system": "shinobigami",
+      "system": "shinobigami_ricky210",
       "private": false,
       "flags": {}
     }
