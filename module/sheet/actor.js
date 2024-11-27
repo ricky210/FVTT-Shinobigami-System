@@ -158,18 +158,24 @@ export class ShinobigamiActor extends Actor {
 
   async rollTalent(title, num, add, secret) {
     if (!add) {
-      this._onRollDice(title, num, null, secret); 
+      this._onRollDice(title, num, null, null, null, secret); 
       return;
     }
     
     new Dialog({
         title: "Please put the additional value",
-        content: `<p><input type='text' id='add'></p><script>$("#add").focus()</script>`,
+        content: `<label for='add'>${game.i18n.localize("Shinobigami.AddOn")}</label>
+                  <p><input type='text' id='add'></p>
+                  <label for='special'><${game.i18n.localize("Shinobigami.Special")}/label>
+                  <p><input type='number' id='special' min='2' max='12'></p>
+                  <label for='fumble'>${game.i18n.localize("Shinobigami.Fumble")}</label>
+                  <p><input type='number' id='fumble' min='2' max='12'></p>
+                  <script>$("#add").focus()</script>`,
         buttons: {
           confirm: {
             icon: '<i class="fas fa-check"></i>',
             label: "Confirm",
-            callback: () => this._onRollDice(title, num, $("#add").val(), secret)
+            callback: () => this._onRollDice(title, num, $("#add").val(), $("#special").val(), $("#fumble").val(), secret)
           }
         },
         default: "confirm"
@@ -177,7 +183,7 @@ export class ShinobigamiActor extends Actor {
     
   }
 
-  async _onRollDice(title, num, add, secret) {
+  async _onRollDice(title, num, add, special, fumble, secret) {
     
     // GM rolls.
     let chatData = {
@@ -210,8 +216,8 @@ export class ShinobigamiActor extends Actor {
       user: game.user.id,
       tooltip: await roll.getTooltip(),
       total: Math.round(roll.total * 100) / 100,
-      special: d == 12,
-      fumble: d == 2,
+      special: d >= (special || 12),
+      fumble: d <= (fumble || 2),
       num: num
     });
 
