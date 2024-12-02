@@ -183,7 +183,7 @@ export class ShinobigamiActor extends Actor {
     
   }
 
-  async _onRollDice(title, num, add, specialValue, fumbleValue, secret) {
+  async _onRollDice(title, num, add, specialThreshhold, fumbleThreshhold, secret) {
     
     // GM rolls.
     let chatData = {
@@ -210,8 +210,8 @@ export class ShinobigamiActor extends Actor {
     let d = roll.terms[0].total;
 
     chatData.roll = roll;
-    const hasSpecialValue = Number.isInteger(parseInt(specialValue));
-    const hasFumbleValue = Number.isInteger(parseInt(fumbleValue));
+    const hasSpecialValue = Number.isInteger(parseInt(specialThreshhold));
+    const hasFumbleValue = Number.isInteger(parseInt(fumbleThreshhold));
     chatData.content = await renderTemplate("systems/shinobigami/templates/roll.html", {
       formula: roll.formula,
       flavor: null,
@@ -220,8 +220,8 @@ export class ShinobigamiActor extends Actor {
       total: Math.round(roll.total * 100) / 100,
       special: d >= hasSpecialValue ? specialValue : 12,
       fumble: d <= hasFumbleValue ? fumbleValue : 2, 
-      specialValue: hasFumbleValue ? `@${specialValue}` : "",
-      fumbleValue: hasFumbleValue ? `#${fumbleValue}` : "",
+      specialThreshhold: hasFumbleValue ? `@${specialThreshold}` : "",
+      fumbleThreshhold: hasFumbleValue ? `#${fumbleThreshhold}` : "",
       num: num
     });
 
