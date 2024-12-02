@@ -2,7 +2,7 @@
 export class TalentTableForm extends FormApplication {
     
     static get defaultOptions() {
-        return mergeObject(super.defaultOptions, {
+        return foundry.utils.mergeObject(super.defaultOptions, {
             title: 'talent setting',
             template: "systems/shinobigami/templates/talent-table-form.html",
             width: 500,
