@@ -218,8 +218,8 @@ export class ShinobigamiActor extends Actor {
       user: game.user.id,
       tooltip: await roll.getTooltip(),
       total: Math.round(roll.total * 100) / 100,
-      special: d >= hasSpecialValue ? specialValue : 12,
-      fumble: d <= hasFumbleValue ? fumbleValue : 2, 
+      special: d >= hasSpecialValue ? specialThreshhold : 12,
+      fumble: d <= hasFumbleValue ? fumbleThreshhold : 2, 
       specialThreshhold: hasFumbleValue ? `@${specialThreshold}` : "",
       fumbleThreshhold: hasFumbleValue ? `#${fumbleThreshhold}` : "",
       num: num
