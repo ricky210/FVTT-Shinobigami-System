@@ -166,16 +166,16 @@ export class ShinobigamiActor extends Actor {
         title: "Please put the additional value",
         content: `<label for='add'>${game.i18n.localize("Shinobigami.AddOn")}</label>
                   <p><input type='number' id='add'></p>
-                  <label for='special'>${game.i18n.localize("Shinobigami.Special")}</label>
-                  <p><input type='number' id='special' min='2' max='12'></p>
-                  <label for='fumble'>${game.i18n.localize("Shinobigami.Fumble")}</label>
-                  <p><input type='number' id='fumble' min='2' max='12'></p>
+                  <label for='specialThreshhold'>${game.i18n.localize("Shinobigami.Special")}</label>
+                  <p><input type='number' id='specialThreshhold' min='2' max='12'></p>
+                  <label for='fumbleThreshhold'>${game.i18n.localize("Shinobigami.Fumble")}</label>
+                  <p><input type='number' id='fumbleThreshhold' min='2' max='12'></p>
                   <script>$("#add").focus()</script>`,
         buttons: {
           confirm: {
             icon: '<i class="fas fa-check"></i>',
             label: "Confirm",
-            callback: () => this._onRollDice(title, num, $("#add").val(), $("#special").val(), $("#fumble").val(), secret)
+            callback: () => this._onRollDice(title, num, $("#add").val(), $("#specialThreshhold").val(), $("#fumbleThreshhold").val(), secret)
           }
         },
         default: "confirm"
