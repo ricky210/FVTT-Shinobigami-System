@@ -29,7 +29,7 @@ export class ActorListDialog extends Dialog {
 
       /** @override */
 	static get defaultOptions() {
-        return mergeObject(super.defaultOptions, {
+        return foundry.utils.mergeObject(super.defaultOptions, {
             template: "templates/hud/dialog.html",
             classes: ["shinobigami", "dialog"],
             width: 400

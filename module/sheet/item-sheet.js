@@ -9,7 +9,7 @@ export class ShinobigamiItemSheet extends ItemSheet {
 
   /** @override */
 	static get defaultOptions() {
-	  return mergeObject(super.defaultOptions, {
+	  return foundry.utils.mergeObject(super.defaultOptions, {
 			classes: ["shinobigami", "sheet", "item"],
 			width: 520,
 			height: 480,

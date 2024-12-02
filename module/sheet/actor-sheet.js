@@ -6,7 +6,7 @@ export class ShinobigamiActorSheet extends ActorSheet {
 
   /** @override */
   static get defaultOptions() {
-    return mergeObject(super.defaultOptions, {
+    return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ["shinobigami", "sheet", "actor"],
       width: 850,
       height: 830,
