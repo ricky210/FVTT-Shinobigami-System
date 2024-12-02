@@ -19,7 +19,7 @@ export class ShinobigamiActorSheet extends ActorSheet {
 
   /** @override */
   get template() {
-    const path = "systems/shinobigami/templates";
+    const path = "systems/shinobigami_ricky210/templates";
     return `${path}/${this.actor.type}-sheet.html`;
   }
 

@@ -4,7 +4,7 @@ export class TalentTableForm extends FormApplication {
     static get defaultOptions() {
         return mergeObject(super.defaultOptions, {
             title: 'talent setting',
-            template: "systems/shinobigami/templates/talent-table-form.html",
+            template: "systems/shinobigami_ricky210/templates/talent-table-form.html",
             width: 500,
             closeOnSubmit: true,
             classes: ["shinobigami", "sheet"]

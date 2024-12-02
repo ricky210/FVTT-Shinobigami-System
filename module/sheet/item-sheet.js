@@ -21,7 +21,7 @@ export class ShinobigamiItemSheet extends ItemSheet {
 
   /** @override */
   get template() {
-    const path = "systems/shinobigami/templates";
+    const path = "systems/shinobigami_ricky210/templates";
     return `${path}/${this.item.type}-sheet.html`;
   }
 

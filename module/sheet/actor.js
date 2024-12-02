@@ -212,7 +212,7 @@ export class ShinobigamiActor extends Actor {
     chatData.roll = roll;
     const hasSpecialThreshhold = Number.isInteger(parseInt(specialThreshhold));
     const hasFumbleThreshhold = Number.isInteger(parseInt(fumbleThreshhold));
-    chatData.content = await renderTemplate("systems/shinobigami/templates/roll.html", {
+    chatData.content = await renderTemplate("systems/shinobigami_ricky210/templates/roll.html", {
       formula: roll.formula,
       flavor: null,
       user: game.user.id,
