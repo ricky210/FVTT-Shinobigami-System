@@ -210,7 +210,7 @@ export class ShinobigamiActor extends Actor {
     let d = roll.terms[0].total;
 
     chatData.roll = roll;
-    const hasSpecialValue = Number.isInteger(parseInt(specialThreshhold));
+    const hasSpecialThreshhold = Number.isInteger(parseInt(specialThreshhold));
     const hasFumbleValue = Number.isInteger(parseInt(fumbleThreshhold));
     chatData.content = await renderTemplate("systems/shinobigami/templates/roll.html", {
       formula: roll.formula,
@@ -218,9 +218,9 @@ export class ShinobigamiActor extends Actor {
       user: game.user.id,
       tooltip: await roll.getTooltip(),
       total: Math.round(roll.total * 100) / 100,
-      special: d >= hasSpecialValue ? specialThreshhold : 12,
+      special: d >= hasSpecialThreshhold ? specialThreshhold : 12,
       fumble: d <= hasFumbleValue ? fumbleThreshhold : 2, 
-      specialThreshhold: hasFumbleValue ? `@${specialThreshold}` : "",
+      specialThreshhold: hasSpecialThreshhold ? `@${specialThreshold}` : "",
       fumbleThreshhold: hasFumbleValue ? `#${fumbleThreshhold}` : "",
       num: num
     });
