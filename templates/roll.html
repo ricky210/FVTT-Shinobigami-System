@@ -7,10 +7,10 @@
         {{{tooltip}}}
         <h4 class="dice-total">
             {{total}}
-            {{#if special}} 
-                <span style="color: #0f6f0f; font-size:0.7em;"> ▶ {{localize "Shinobigami.Special"}} </span>
+
+            {{#if fumble}} <span style="color: #862020; font-size:0.7em;"> ▶ {{localize "Shinobigami.Fumble"}} </span>
             {{else}}
-                {{#if fumble}} <span style="color: #862020; font-size:0.7em;"> ▶ {{localize "Shinobigami.Fumble"}} </span>
+                {{#if special}} <span style="color: #0f6f0f; font-size:0.7em;"> ▶ {{localize "Shinobigami.Special"}} </span>
                 {{else}}
                     {{#ifSuccess total num}} 
                         <span style="color: #0f6f0f; font-size:0.7em;"> ▶ {{localize "Shinobigami.Success"}}  </span>
