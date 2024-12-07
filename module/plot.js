@@ -39,12 +39,35 @@ export class PlotSettings {
         Hooks.on("spreadPlot", () => {
             let plots = game.shinobigami.plot;
             for (let plot of plots) {
+                const actor = game.actors.get(plot.actorId);
                 let share = game.user.id;
-                for (let user of game.users)
-                    if (user.active && user.character != null && user.character.id === plot.actorId) {
-                        share = user.id;
-                        break;
+                let sharePriority = 4;
+                for (let user of game.users) {
+                    if (user.active) {
+                        if (user.charactor?.id === actor.id) {
+                            share = user.id;
+                            sharePriority = 0;
+                            break;
+                        }
+
+                        if (actor.testUserPermission(user, "OWNER")) {
+                            if (sharePriority > 1 && (user.role === CONST.USER_ROLES.PLAYER || user.role === CONST.USER_ROLES.TRUSTED)) {
+                                share = user.id;
+                                sharePriority = 1;
+                            }
+
+                            if (sharePriority > 2 && user.role === CONST.USER_ROLES.ASSISTANT) {
+                                share = user.id;
+                                sharePriority = 2;
+                            }
+
+                            if (sharePriority > 3 && user.role === CONST.USER_ROLES.GAMEMASTER) {
+                                share = user.id;
+                                sharePriority = 3;
+                            }
+                        }
                     }
+                }
 
                 if (share == game.user.id) {
                     let d = new PlotDialog(plot.actorId, plot.combatant, plot.name, game.user.id).render(true);
