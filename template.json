@@ -87,6 +87,11 @@
         "description": ""
     },
     "item": {
+        "attribute": "",
+        "type": "",
+        "buyable": true,
+        "strength": 0,
+        "ingredients": "",
         "description": "",
         "quantity": 1
     },

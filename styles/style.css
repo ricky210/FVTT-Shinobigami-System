@@ -175,6 +175,14 @@
   grid-column: span 8;
 }
 
+.shinobigami .sheet-item .cell--2 {
+  grid-column: span 2;
+}
+
+.shinobigami .sheet-item .cell--3 {
+  grid-column: span 3;
+}
+
 .shinobigami .sheet-item .cell--4 {
   grid-column: span 4;
 }
