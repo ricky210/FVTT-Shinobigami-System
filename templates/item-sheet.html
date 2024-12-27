@@ -13,19 +13,51 @@
       <div class="sheet-item margin-top-10">
         <div class="sheet-wrapper">
           <section class="sheet-attributes">
-            <div class="cell cell--5">
-              <label class="cell--title">{{localize "Shinobigami.Quantity"}}</label>
+            <div class="cell cell--2">
+              <label class="cell--title">属性</label>
+            </div>
+            <div class="cell cell--4">
+              <input type="text" class="string-input" name="system.attribute" value="{{system.attribute}}" data-dtype="String">
             </div>
 
-            <div class="cell cell--11">
+            <div class="cell cell--2">
+              <label class="cell--title">タイプ</label>
+            </div>
+            <div class="cell cell--3">
+              <input type="text" class="string-input" name="system.type" value="{{system.type}}" data-dtype="String"/>
+            </div>
+
+            <div class="cell cell--2">
+              <label class="cell--title">{{localize "Shinobigami.Quantity"}}</label>
+            </div>
+            <div class="cell cell--3">
               <input type="text" class="string-input" name="system.quantity" value="{{system.quantity}}" data-dtype="String"/>
+            </div>
+
+            <div class="cell cell--2">
+              <label class="cell--title">購入</label>
+            </div>
+            <div class="cell cell--2">
+              <input type="text" class="string-input" name="system.buyable" value="{{system.buyable}}" data-dtype="String"/>
+            </div>
+
+            <div class="cell cell--2">
+              <label class="cell--title">強度</label>
+            </div>
+            <div class="cell cell--2">
+              <input type="text" class="string-input" name="system.strength" value="{{system.strength}}" data-dtype="String"/>
+            </div>
+
+            <div class="cell cell--2">
+              <label class="cell--title">材料</label>
+            </div>
+            <div class="cell cell--6">
+              <input type="text" class="string-input" name="system.ingredients" value="{{system.ingredients}}" data-dtype="String"/>
             </div>
           </section>
 
           <div class="cell--bio">
-            <h3 class="cell--title"><b>{{localize "Shinobigami.Description"}}</b>
-
-            </h3>
+            <h3 class="cell--title"><b>{{localize "Shinobigami.Description"}}</b></h3>
             {{editor enrichedBiography target="system.description" button=true editable=editable }}
           </div>
 
